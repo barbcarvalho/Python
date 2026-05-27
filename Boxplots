@@ -1,0 +1,49 @@
+# @title Boxplots
+
+# Estilo acadêmico
+sns.set(style="whitegrid")
+# Tamanho do boxplot
+plt.figure(figsize=(14,6))
+
+# BOXPLOT VERTICAL
+plt.subplot(1,2,1)
+
+sns.boxplot(
+    y=salario,
+    width=0.4,
+    boxprops=dict(alpha=0.7),
+    medianprops=dict(linewidth=2),  # mediana destacada
+    flierprops=dict(marker='o', markersize=5)  # outliers
+)
+
+# Média (X)
+plt.scatter(0, salario_media, marker='x', s=150, linewidths=3)
+
+# Mediana (linha horizontal adicional para reforço visual)
+plt.axhline(salario_mediana, linestyle='--', linewidth=1)
+
+plt.title('Boxplot Vertical - Salário', fontsize=12)
+plt.ylabel('Salário')
+
+# BOXPLOT HORIZONTAL
+plt.subplot(1,2,2)
+
+sns.boxplot(
+    x=salario,
+    width=0.4,
+    boxprops=dict(alpha=0.7),
+    medianprops=dict(linewidth=2),
+    flierprops=dict(marker='o', markersize=5)
+)
+
+# Média (X)
+plt.scatter(salario_media, 0, marker='x', s=150, linewidths=3)
+
+# Mediana (linha vertical)
+plt.axvline(salario_mediana, linestyle='--', linewidth=1)
+
+plt.title('Boxplot Horizontal - Salário', fontsize=12)
+plt.xlabel('Salário')
+
+plt.tight_layout()
+plt.show()
