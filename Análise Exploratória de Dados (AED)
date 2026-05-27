@@ -1,1 +1,54 @@
+import io
+import pandas as pd
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
+#---------------------------------------
+from google.colab import files
+uploaded = files.upload()
+df_pacientes = pd.read_csv('pacientes.csv', sep=',', encoding='utf-8')
+#-----------------------------------------------------
+# Calcula as medidas da Análise Exploratória de Dados (AED)
 
+idade_media = df_pacientes['IDADE'].mean() # média
+idade_mediana = df_pacientes['IDADE'].median() # mediana
+
+idade_moda_statistics = statistics.mode(df_pacientes['IDADE'])
+idade_moda_stats_scipy = stats.mode(df_pacientes['IDADE'])
+
+idade_minimo = df_pacientes['IDADE'].min() # mínimo
+idade_maximo = df_pacientes['IDADE'].max() # máximo
+idade_desvio_padrao = df_pacientes['IDADE'].std() # desvio padrão
+idade_primeiro_quartil = df_pacientes['IDADE'].quantile(0.25) # 1o quartil
+idade_terceiro_quartil = df_pacientes['IDADE'].quantile(0.75) # 2o quartil
+idade_aiq = idade_terceiro_quartil - idade_primeiro_quartil # amplitude interquartil
+idade_variancia = df_pacientes['IDADE'].var() # variância
+idade_contagem = df_pacientes['IDADE'].count() # contagem
+
+# Mostra as medidas calculadas e realiza os comentários pertinentes
+print('--- ANÁLISE EXPLORATÓRIA DE DADOS (AED) DA IDADE ---')
+print(f'Mínimo: {idade_minimo:.2f}')
+print(f'Média: {idade_media:.2f}')
+print(f'Mediana: {idade_mediana:.2f}')
+print('')
+print('Relação média e mediana:')
+if idade_media == idade_mediana:
+  print('A distribuição de idades é simetrica!')
+elif idade_media < idade_mediana:
+  print('A distribuição é assimétria à esquerda,')
+  print('com predominância de valores mais baixos')
+  print('de idade, ou seja, pessoas mais jovens!')
+else:
+  print('A distribuição é assimétria à direita,')
+  print('com predominância de valores mais altos')
+  print('de idade, ou seja, pessoas mais velhas!')
+print(' ')
+print(f'Moda pelo Statistics: {idade_moda_statistics:.2f}')
+# print(f'Moda pelo Stats: {idade_moda_stats_scipy}')
+print('Idade é uma variável quantitativa unimodal cujo valor')
+print('mostra uma predominância de idades maiores em detrimento')
+print('de idades menores, ou seja, há pessoas mais velhas')
+print('')
+print(f'Q1: {idade_primeiro_quartil:.2f}')
+print(f'Q2: {idade_mediana:.2f}')
+print(f'Q3: {idade_terceiro_quartil:.2f}')
