@@ -1,0 +1,34 @@
+# @title Medidas estatísticas da variável Salário
+
+salario_media = salario.mean()
+salario_mediana = salario.median()
+salario_moda = salario.mode()[0]
+salario_minimo = salario.min()
+salario_maximo = salario.max()
+salario_variancia = salario.var()
+salario_desvio_padrao = salario.std()
+
+# Quartis
+salario_q1 = salario.quantile(0.25)
+salario_q2 = salario.quantile(0.50)
+salario_q3 = salario.quantile(0.75)
+
+# Coeficiente de variação (%)
+salario_cv = (salario_desvio_padrao / salario_media) * 100
+
+print(f"Média: {salario_media:.2f}")
+print(f"Mediana: {salario_mediana:.2f}")
+print(f"Moda: {salario_moda:.2f}")
+print(f"Mínimo: {salario_minimo:.2f}")
+print(f"Máximo: {salario_maximo:.2f}")
+print(f"Q1: {salario_q1:.2f}")
+print(f"Q2 (Mediana): {salario_q2:.2f}")
+print(f"Q3: {salario_q3:.2f}")
+print(f"Variância: {salario_variancia:.2f}")
+print(f"Desvio Padrão: {salario_desvio_padrao:.2f}")
+
+# CV < 15% → baixa variabilidade (dados homogêneos)
+# 15% ≤ CV ≤ 30% → variabilidade moderada
+# CV > 30% → alta variabilidade (dados heterogêneos)
+
+print(f"Coeficiente de Variação Percentual (CV%): {salario_cv:.2f}%")
